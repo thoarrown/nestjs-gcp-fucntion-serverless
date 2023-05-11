@@ -1,0 +1,6 @@
+service:
+  version: npm_package_version
+  port: PORT
+  serverless: 
+    __name: SERVERLESS
+    __format: boolean
