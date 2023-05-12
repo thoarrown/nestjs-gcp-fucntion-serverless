@@ -11,6 +11,9 @@ provider:
   # the path to the credentials file needs to be absolute
   credentials: ~/.config/gcloud/application_default_credentials.json
 
+  environment:
+    MONGODB_URL: ${env:MONGODB_URL}
+
 frameworkVersion: '3'
 useDotenv: true
 
