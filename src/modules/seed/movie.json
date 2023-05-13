@@ -1,0 +1,9 @@
+{
+  "title": "String",
+  "youtube_id": "String",
+  "playlist_cover_id": "String",
+  "country": "String",
+  "category": "String",
+  "created_at": "Date",
+  "updated_at": "Date"
+}

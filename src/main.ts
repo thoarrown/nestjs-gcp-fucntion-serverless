@@ -1,4 +1,9 @@
-import { INestApplication } from '@nestjs/common';
+import {
+  BadRequestException,
+  HttpException,
+  INestApplication,
+  ValidationPipe,
+} from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { Logger } from 'nestjs-pino';
@@ -19,7 +24,19 @@ async function bootstrap(expressInstance: any) {
   await setupSwaggerDoc(app);
 
   app.useLogger(app.get(Logger));
-  await app.init();
+  // app.useGlobalFilters(new HttpExceptionFilter());
+  // await app.init();
+
+  app.useGlobalPipes(
+    new ValidationPipe({
+      transform: true,
+      whitelist: true,
+      exceptionFactory: (error) => {
+        const objError = error[0].constraints;
+        throw new BadRequestException(objError[Object.keys(objError)[0]]);
+      },
+    }),
+  );
 
   if (!config.get('service.serverless')) {
     await app.listen(config.get('service.port'));

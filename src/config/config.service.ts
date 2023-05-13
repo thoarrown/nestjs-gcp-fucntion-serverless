@@ -20,8 +20,6 @@ export class ConfigService {
    * DotEnv config
    */
   constructor() {
-    // const { error } = config({ path: `.env.${process.env.NODE_ENV}` });
-    // if (error) throw error;
     dotenv.config();
   }
 
@@ -54,8 +52,6 @@ export class ConfigService {
     const environment = plainToClass(Environment, {
       ...new Environment(),
       ...process.env,
-      // MONGODB_URL:
-      //   'mongodb+srv://kijkembedyoutube:OYIJ4Y6rwt7G0aSI@cluster0.rzmuz.mongodb.net/?retryWrites=true&w=majority',
     });
     const variable = environment[key];
     if (!variable) throw TypeError(`The ${key} cannot be undefined`);

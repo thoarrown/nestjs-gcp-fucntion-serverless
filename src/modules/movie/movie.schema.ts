@@ -2,14 +2,15 @@ import * as mongoose from 'mongoose';
 
 export const movieSchema = new mongoose.Schema({
   title: String,
-  youtubeId: String,
-  playlistCoverId: String,
-  country: String,
+  youtube_id: String,
+  playlist_cover_id: String,
+  country_code: String,
   category: {
     type: String,
-    enum: ['Food', 'Travel', 'Funny', 'Music'],
+    enum: ['Food', 'Travel', 'Funny', 'Music', 'Others'],
     required: true,
   },
-  createdAt: Date,
-  updatedAt: Date,
+  params: String,
+  created_at: Date,
+  updated_at: Date,
 });
