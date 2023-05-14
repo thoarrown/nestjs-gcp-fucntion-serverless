@@ -24,6 +24,7 @@ async function bootstrap(expressInstance: any) {
   await setupSwaggerDoc(app);
 
   app.useLogger(app.get(Logger));
+  app.enableCors();
 
   app.useGlobalPipes(
     new ValidationPipe({
