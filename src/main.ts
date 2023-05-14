@@ -18,13 +18,17 @@ async function bootstrap(expressInstance: any) {
   const app = await NestFactory.create(
     AppModule,
     new ExpressAdapter(expressInstance),
-    { bufferLogs: true },
+    { bufferLogs: true, bodyParser: true },
   );
 
   await setupSwaggerDoc(app);
 
   app.useLogger(app.get(Logger));
-  app.enableCors();
+  app.enableCors({
+    allowedHeaders: '*',
+    origin: '*',
+    credentials: true,
+  });
 
   app.useGlobalPipes(
     new ValidationPipe({
@@ -36,7 +40,7 @@ async function bootstrap(expressInstance: any) {
       },
     }),
   );
-
+  await app.init();
   if (!config.get('service.serverless')) {
     await app.listen(config.get('service.port'));
   }
