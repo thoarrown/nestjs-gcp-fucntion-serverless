@@ -1,12 +1,13 @@
 export const MovieFields = {
   title: 'title',
-  country_code: 'countryCode',
+  countryCode: 'country_code',
   category: 'category',
-  youtube_id: 'id',
+  id: 'youtube_id',
   params: 'params',
   width: 'width',
   height: 'height',
   poster: 'poster',
-  ad_network: 'adNetwork',
-  no_cookie: 'noCookie',
+  adNetwork: 'ad_network',
+  noCookie: 'no_cookie',
+  playlist: 'playlist',
 };

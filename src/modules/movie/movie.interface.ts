@@ -1,11 +1,11 @@
 export type Movie = {
   title: string;
-  youtubeId: string;
-  playlistCoverId: string;
+  youtube_id: string;
+  playlist_cover_id: string;
   country: string;
   category: CategoryEnum;
-  createdAt: Date;
-  updatedAt: Date;
+  created_at: Date;
+  updated_at: Date;
 };
 
 enum CategoryEnum {

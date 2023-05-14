@@ -13,4 +13,10 @@ export const movieSchema = new mongoose.Schema({
   params: String,
   created_at: Date,
   updated_at: Date,
+  width: String,
+  height: String,
+  poster: String,
+  ad_network: Boolean,
+  no_cookie: Boolean,
+  playlist: Boolean,
 });

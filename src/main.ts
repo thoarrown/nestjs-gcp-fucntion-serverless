@@ -18,14 +18,12 @@ async function bootstrap(expressInstance: any) {
   const app = await NestFactory.create(
     AppModule,
     new ExpressAdapter(expressInstance),
-    { bufferLogs: true },
+    // { bufferLogs: true },
   );
 
   await setupSwaggerDoc(app);
 
   app.useLogger(app.get(Logger));
-  // app.useGlobalFilters(new HttpExceptionFilter());
-  // await app.init();
 
   app.useGlobalPipes(
     new ValidationPipe({
@@ -38,9 +36,9 @@ async function bootstrap(expressInstance: any) {
     }),
   );
 
-  if (!config.get('service.serverless')) {
-    await app.listen(config.get('service.port'));
-  }
+  // if (!config.get('service.serverless')) {
+  await app.listen(config.get('service.port'));
+  // }
 }
 
 async function setupSwaggerDoc(app: INestApplication): Promise<void> {

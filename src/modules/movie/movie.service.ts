@@ -2,7 +2,7 @@ import { HttpService } from '@nestjs/axios';
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-
+import { camelCase, mapKeys } from 'lodash';
 @Injectable()
 export class MovieService {
   constructor(
@@ -43,22 +43,21 @@ export class MovieService {
     } else {
       const movieData = movie[0];
 
-      const response = {
-        countryCode: movieData.country,
-        dateCreated: movieData.dateCreated,
-        dateModified: movieData.dateModified,
-        category: movieData.category,
-        id: movieData.youtubeId,
-        adNetwork: true,
-        params: 'start=24',
-        playlist: false,
-        playlistCoverId: movieData.playlistCoverId,
-        poster: 'hqdefault',
-        title: movieData.title,
-        noCookie: true,
-      };
-
-      return response;
+      // const response = {
+      //   countryCode: movieData.country,
+      //   dateCreated: movieData.dateCreated,
+      //   dateModified: movieData.dateModified,
+      //   category: movieData.category,
+      //   id: movieData.youtubeId,
+      //   adNetwork: movieData.,
+      //   params: 'start=24',
+      //   playlist: false,
+      //   playlistCoverId: movieData.playlistCoverId,
+      //   poster: 'hqdefault',
+      //   title: movieData.title,
+      //   noCookie: movieData.,
+      // };
+      return mapKeys(movieData, (v, k) => camelCase(k));
     }
   }
 }
